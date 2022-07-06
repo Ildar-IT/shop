@@ -1,5 +1,9 @@
 # shop
 
+## Node version 
+```
+v14.16.0
+```
 ## Project setup
 ```
 npm install

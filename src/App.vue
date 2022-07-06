@@ -1,28 +1,69 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+  <v-app>
+    <transition name="route" mode="out-in">
+      <router-view/>
+    </transition>
+  </v-app>
 </template>
-
 <script>
-import HelloWorld from './components/HelloWorld.vue'
 
 export default {
   name: 'App',
-  components: {
-    HelloWorld
-  }
-}
+
+  data: () => ({
+    //
+  }),
+};
 </script>
 
 <style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+:root {
+  --vh: 1vh;
+  --gray: #B3B8CB;
 }
+
+
+
+
+html {
+  overflow-y: inherit;
+  overflow-x: hidden;
+}
+
+body {
+  box-sizing: border-box;
+  cursor: default;
+  font-family: Avenir, Helvetica, Arial, sans-serif;;
+  font-weight: 300;
+  font-style: normal;
+  font-size: 13px;
+  line-height: 27px;
+  padding: 0;
+  margin: 0;
+  color: $black;
+  @include up($md) {
+    font-size: 18px;
+  }
+  @include up($lg) {
+    font-size: 24px;
+  }
+}
+#app {
+  overflow: hidden;
+  min-width: 320px;
+
+  p {
+    margin-bottom: 0;
+
+  }
+}
+a {
+  @include transition();
+  &:hover {
+    opacity: 0.7;
+  }
+}
+
+
+
 </style>
