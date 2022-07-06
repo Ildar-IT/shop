@@ -2,22 +2,26 @@
 @import "mixins";
 
 $xs: 0px;
-$sm: 744px;
+$sm: 640px;
 $md: 1200px;
 $lg: 1720px;
-$xl: 1720px;
+$xl: 2000px;
 
 
 
-$white: #ffffff;
-$black: #000000;
-$light-grey: #E1E5EC;
+$white: #FFFEFB;
 
-//todo use color variables below
+$black: #3F3F3F;
+$light-black: #49485E;
+$grey: #B4B4B4;
+$light-grey: #EEEEEE;
+$green: #7BAE73;
+
 $primary-1: #4FC9FF;
-$error: #FF4A47;
+$error: #FF8484;
 $warning: #FFCC16;
 $default-text-color: $white;
+$bg: rgba(255, 254, 251, 0.8);
 
 
 

@@ -1,15 +1,15 @@
 <template>
-  <div  v-if="selectList.length >= 1"
-        class="filter"
-        :class="{'filter-active':active}"
-        @click="openPopup">
+  <div v-if="selectList.length >= 1"
+       class="filter-items"
+       :class="{'filter-items-active':active}"
+       @click="openPopup">
 
-        <span class="filter-item " :class="{'filter-item-active':active}">
+        <span class="filter-items-item " :class="{'filter-items-item-active':active}">
           {{ activeSelectName }}
         </span>
     <ul :class="active ? 'd-block':'d-none'">
-      <li v-for="item in selectList" :key="item" @click.stop="selectItem(item)">
-        {{ item }}
+      <li v-for="item in selectList" :key="item.id" @click.stop="selectItem(item.name, item.id)">
+        {{ item.name }}
       </li>
     </ul>
   </div>
@@ -17,30 +17,35 @@
 
 <script>
 export default {
-  name: "filter",
+  name: "filter-items",
   data() {
     return {
       active: null,
       activeSelectName: 'По умолчанию',
-      selectList: ['По умолчанию','По наименованию', 'По возрастанию цены', 'По уменьшению цены'],
+      selectList: [
+        {id: '1', name: 'По умолчанию'},
+        {id: '2', name: 'По наименованию'},
+        {id: '3', name: 'По возрастанию цены'},
+        {id: '4', name: 'По уменьшению цены'},
+      ],
     }
   },
   methods: {
     openPopup() {
       this.active = true;
     },
-    selectItem(item) {
+    selectItem(name, id) {
       this.active = false;
+      this.activeSelectName = name;
 
-      this.activeSelectName = item;
-
+      this.$emit('selectID', id)
     }
   }
 }
 </script>
 
 <style lang="scss">
-.filter {
+.filter-items {
   z-index: 10;
   font-style: normal;
   font-weight: 400;
@@ -54,13 +59,14 @@ export default {
   justify-content: space-between;
   padding: 16px 10px;
   position: absolute;
-  top: 25px;
+  top: 31px;
   right: 12px;
   width: 150px;
   background: $white;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   border-radius: 4px;
   @include transition();
+
   &:hover {
     opacity: 0.7;
   }
@@ -70,6 +76,7 @@ export default {
       opacity: 1;
     }
   }
+
   @include up($sm) {
 
     right: 48px;
@@ -98,12 +105,15 @@ export default {
       }
     }
   }
+
   ul {
     margin-top: 14px;
+
     li {
       margin-bottom: 4px;
+
       &:hover {
-        color: $light-black ;
+        color: $light-black;
       }
     }
   }
